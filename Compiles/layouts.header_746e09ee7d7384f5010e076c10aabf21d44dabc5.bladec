@@ -1,0 +1,78 @@
+<header id="header" class="header d-flex align-items-center fixed-top">
+ <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+ <a href="/" class="logo d-flex align-items-center">
+ <!-- Uncomment the line below if you also wish to use an image logo -->
+ <!-- <img src="assets/img/logo.png" alt=""> -->
+ <h1>ZenBlog</h1>
+ </a>
+
+ <?php 
+ $categories = (new \Hoang\Mvcoop\Models\CLient\CategoryModel())->getForCategory();
+ ?>
+ <nav id="navbar" class="navbar">
+ <ul>
+ <li><a href="/">Trang Chủ</a></li>
+ <li><a href="single-post.html">Giới Thiệu</a></li>
+ <li class="dropdown"><a href="/category"><span>Danh Mục</span> <i
+ class="bi bi-chevron-down dropdown-indicator"></i></a>
+ <ul>
+ <?php $__currentLoopData = $categories; $this->addLoop($__currentLoopData);$this->getFirstLoop();
+ foreach($__currentLoopData as $category): $loop = $this->incrementLoopIndices();  ?>
+ <li><a href="/category/<?php echo \htmlentities($category['slug']??'', ENT_QUOTES, 'UTF-8', false); ?>"><?php echo \htmlentities($category['name_category']??'', ENT_QUOTES, 'UTF-8', false); ?></a>
+ </li>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+ <?php /*                        <li><a href="#">Drop Down 1</a></li>*/ ?>
+ <?php /*                        <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>*/ ?>
+ <?php /*                            <ul>*/ ?>
+ <?php /*                                <li><a href="#">Deep Drop Down 1</a></li>*/ ?>
+ <?php /*                                <li><a href="#">Deep Drop Down 2</a></li>*/ ?>
+ <?php /*                                <li><a href="#">Deep Drop Down 3</a></li>*/ ?>
+ <?php /*                                <li><a href="#">Deep Drop Down 4</a></li>*/ ?>
+ <?php /*                                <li><a href="#">Deep Drop Down 5</a></li>*/ ?>
+ <?php /*                            </ul>*/ ?>
+ <?php /*                        </li>*/ ?>
+ <?php /*                        <li><a href="#">Drop Down 2</a></li>*/ ?>
+ <?php /*                        <li><a href="#">Drop Down 3</a></li>*/ ?>
+ <?php /*                        <li><a href="#">Drop Down 4</a></li>*/ ?>
+ </ul>
+ </li>
+
+ <li><a href="/aboutUs">Về Chúng Tôi</a></li>
+ <li><a href="/contact">Liên Hệ</a></li>
+ </ul>
+ </nav><!-- .navbar -->
+
+ <?php 
+ $user = (new \Hoang\Mvcoop\Models\Admin\UserModel())->getUserById($_SESSION['account_id'] ?? null);
+ ?>
+
+ <div class="position-relative">
+ <?php if(!empty($_SESSION['account_id'])): ?>
+ <?php if($user['role'] == 1): ?>
+ <a style="padding-right: 4px" href="/admin">Vào trang quản trị</a>
+ <?php endif; ?>
+ <a style="<?php echo \htmlentities($user['role'] == 1 ? "border-left: 2px solid #000; padding-left: 5px" : ""??'', ENT_QUOTES, 'UTF-8', false); ?>"
+ href="/profile"><?php echo \htmlentities($user['name'] ?? null??'', ENT_QUOTES, 'UTF-8', false); ?></a>
+ <a style="border-left: 2px solid #000; padding-left: 5px" href="/auth/logout">Đăng xuất</a>
+
+ <?php else: ?>
+ <a href="/auth/register">Tạo tài khoản</a>
+ <a style="border-left: 2px solid #000; padding-left: 5px" href="/auth/login">Đăng nhâp</a>
+ <?php endif; ?>
+ <a href="#" class="mx-2 js-search-open"><span class="bi-search"></span></a>
+ <i class="bi bi-list mobile-nav-toggle"></i>
+
+ <!-- ======= Search Form ======= -->
+ <div class="search-form-wrap js-search-form-wrap">
+ <form action="/result" method="get" class="search-form">
+ <span class="icon bi-search"><input type="submit" style="position: absolute;left: -8px;top: -6px;width: 32px;height: 33px;opacity: 0;" value=" "></span>
+ <input type="text" name="search_post" placeholder="Nhập từ khóa..." class="form-control">
+ <button class="btn js-search-close"><span class="bi-x"></span></button>
+ </form>
+ </div><!-- End Search Form -->
+
+ </div>
+
+ </div>
+
+</header>

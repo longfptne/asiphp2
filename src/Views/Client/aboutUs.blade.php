@@ -1,0 +1,53 @@
+@extends('layouts.master')
+
+@section('title')
+    Về chúng tôi
+@endsection
+
+@section('content')
+    <section>
+        <div class="container" data-aos="fade-up">
+            <div class="row">
+                <div class="col-lg-12 text-center mb-5">
+                    <h1 class="page-title">Về Chúng Tôi</h1>
+                </div>
+            </div>
+
+            <div class="row mb-5">
+
+                <div class="d-md-flex post-entry-2 half">
+                    <a href="#" class="me-4 thumbnail">
+                        <img src="/assets/client/assets/img/post-sq-3.jpg" alt="" class="img-fluid">
+                    </a>
+                    <div class="ps-md-5 mt-4 mt-md-0">
+                        <div class="post-meta mt-4">Về chúng tôi</div>
+                        <h2 class="mb-4 display-4">
+                            Lịch sử công ty</h2>
+                        <p>Công ty ZenBlog đã được thành lập vào năm 2024 với mục tiêu tạo ra một sứ mệnh có ý nghĩa và sâu sắc trong ngành. Từ những ngày đầu tiên của hành trình, sứ mệnh này đã là động lực chính cho sự phát triển của chúng tôi. Bằng sự kiên trì, cam kết và tinh thần đổi mới không ngừng, chúng tôi đã vượt qua mọi thách thức, từ việc xây dựng cơ sở hạ tầng đến việc phát triển đội ngũ nhân viên tài năng. Với hơn YY năm kinh nghiệm, Công ty ZenBlog tự hào là một phần của cộng đồng kinh doanh và sẵn lòng tiếp tục đóng góp vào sự thành công của khách hàng và cộng đồng xung quanh.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section>
+        <div class="container" data-aos="fade-up">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-6">
+                            <h2 class="display-4">Đội Ngũ</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 text-center mb-5">
+                    <img src="/assets/client/assets/img/vanh.jpg" alt="" class="img-fluid rounded-circle w-50 mb-4">
+                    <h4>Thanh Tú</h4>
+                    <span class="d-block mb-3 text-uppercase">Giám đốc</span>
+                    <p>Anh đã tận tâm làm hoàn thành xuất sắc các công việc đã được giao</p>
+                </div>
+            </div>
+        </div>
+    </section>
+@endsection

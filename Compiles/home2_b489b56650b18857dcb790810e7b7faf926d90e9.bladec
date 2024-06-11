@@ -1,0 +1,413 @@
+<?php $_shouldextend[1]=1; ?>
+
+<?php $this->startSection('title'); ?>
+ Home
+<?php $this->stopSection(); ?>
+
+<?php $this->startSection('content'); ?>
+ <!-- ======= Hero Slider Section ======= -->
+ <section id="hero-slider" class="hero-slider">
+ <div class="container-md" data-aos="fade-in">
+ <div class="row">
+ <div class="col-12">
+ <div class="swiper sliderFeaturedPosts">
+ <div class="swiper-wrapper">
+ <div class="swiper-slide">
+ <a href="single-post.html" class="img-bg d-flex align-items-end"
+ style="background-image: url('/assets/client/assets/img/post-slide-1.jpg');">
+ <div class="img-bg-inner">
+ <h2>The Best Homemade Masks for Face (keep the Pimples Away)</h2>
+ <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem neque est
+ mollitia! Beatae minima assumenda repellat harum vero, officiis ipsam magnam
+ obcaecati cumque maxime inventore repudiandae quidem necessitatibus rem
+ atque.</p>
+ </div>
+ </a>
+ </div>
+
+ <div class="swiper-slide">
+ <a href="single-post.html" class="img-bg d-flex align-items-end"
+ style="background-image: url('/assets/client/assets/img/post-slide-2.jpg');">
+ <div class="img-bg-inner">
+ <h2>17 Pictures of Medium Length Hair in Layers That Will Inspire Your New
+ Haircut</h2>
+ <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem neque est
+ mollitia! Beatae minima assumenda repellat harum vero, officiis ipsam magnam
+ obcaecati cumque maxime inventore repudiandae quidem necessitatibus rem
+ atque.</p>
+ </div>
+ </a>
+ </div>
+
+ <div class="swiper-slide">
+ <a href="single-post.html" class="img-bg d-flex align-items-end"
+ style="background-image: url('/assets/client/assets/img/post-slide-3.jpg');">
+ <div class="img-bg-inner">
+ <h2>13 Amazing Poems from Shel Silverstein with Valuable Life Lessons</h2>
+ <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem neque est
+ mollitia! Beatae minima assumenda repellat harum vero, officiis ipsam magnam
+ obcaecati cumque maxime inventore repudiandae quidem necessitatibus rem
+ atque.</p>
+ </div>
+ </a>
+ </div>
+
+ <div class="swiper-slide">
+ <a href="single-post.html" class="img-bg d-flex align-items-end"
+ style="background-image: url('/assets/client/assets/img/post-slide-4.jpg');">
+ <div class="img-bg-inner">
+ <h2>9 Half-up/half-down Hairstyles for Long and Medium Hair</h2>
+ <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem neque est
+ mollitia! Beatae minima assumenda repellat harum vero, officiis ipsam magnam
+ obcaecati cumque maxime inventore repudiandae quidem necessitatibus rem
+ atque.</p>
+ </div>
+ </a>
+ </div>
+ </div>
+ <div class="custom-swiper-button-next">
+ <span class="bi-chevron-right"></span>
+ </div>
+ <div class="custom-swiper-button-prev">
+ <span class="bi-chevron-left"></span>
+ </div>
+
+ <div class="swiper-pagination"></div>
+ </div>
+ </div>
+ </div>
+ </div>
+ </section><!-- End Hero Slider Section -->
+
+ <!-- ======= Post Grid Section ======= -->
+ <section id="posts" class="posts">
+ <div class="container" data-aos="fade-up">
+ <div class="row g-5">
+ <?php $__currentLoopData = $onePost; $this->addLoop($__currentLoopData);$this->getFirstLoop();
+ foreach($__currentLoopData as $post): $loop = $this->incrementLoopIndices();  ?>
+ <div class="col-lg-4">
+ <?php echo $this->runChild('composers.post-entry-1',
+ [
+ 'post' => $post,
+ ]
+ ); ?>
+ </div>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+
+ <div class="col-lg-8">
+ <div class="row g-5">
+
+ <?php $__currentLoopData = $postListPostTop6; $this->addLoop($__currentLoopData);$this->getFirstLoop();
+ foreach($__currentLoopData as $postItem): $loop = $this->incrementLoopIndices();  ?>
+ <div class="col-lg-4 border-start custom-border">
+ <?php $__currentLoopData = $postItem; $this->addLoop($__currentLoopData);$this->getFirstLoop();
+ foreach($__currentLoopData as $index => $post): $loop = $this->incrementLoopIndices();  ?>
+ <?php echo $this->runChild('composers.post-entry-1',
+ [
+ 'post' => $post,
+ 'hiddenAuthor' => false,
+ 'lastIndex' => count($postItem) - 1, // Số lượng phần tử trong mỗi mảng $postItem
+ 'index' => $index
+ ]
+ ); ?>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+ </div>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+
+ <!-- Trending Section -->
+ <div class="col-lg-4">
+
+ <div class="trending">
+ <h3>Xu Hướng</h3>
+ <ul class="trending-post">
+ <?php $__currentLoopData = $getPostByTrend; $this->addLoop($__currentLoopData);$this->getFirstLoop();
+ foreach($__currentLoopData as $key => $postTrend): $loop = $this->incrementLoopIndices();  ?>
+ <li>
+ <a href="/postDetail/<?php echo \htmlentities($postTrend['id_post']??'', ENT_QUOTES, 'UTF-8', false); ?>">
+ <span class="number"><?php echo \htmlentities($key+1??'', ENT_QUOTES, 'UTF-8', false); ?></span>
+ <h3><?php echo \htmlentities($postTrend['title']??'', ENT_QUOTES, 'UTF-8', false); ?></h3>
+ <span class="author"><?php echo \htmlentities($postTrend['name_category']??'', ENT_QUOTES, 'UTF-8', false); ?></span>
+ </a>
+ </li>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+ </ul>
+ </div>
+
+ </div>
+ <!-- End Trending Section -->
+ </div>
+ </div>
+
+ </div> <!-- End .row -->
+ </div>
+ </section> <!-- End Post Grid Section -->
+
+ <!-- ======= Culture Category Section ======= -->
+ <section class="category-section">
+ <div class="container" data-aos="fade-up">
+
+ <div class="section-header d-flex justify-content-between align-items-center mb-5">
+ <h2>Văn Hóa</h2>
+ <div><a href="/category/6" class="more">Xem Tất Cả Văn Hóa</a></div>
+ </div>
+
+ <div class="row">
+ <div class="col-md-9">
+ <?php $__currentLoopData = $postByCategoryCultureMain; $this->addLoop($__currentLoopData);$this->getFirstLoop();
+ foreach($__currentLoopData as $post): $loop = $this->incrementLoopIndices();  ?>
+ <?php echo $this->runChild('composers.post-entry-2',
+ [
+ 'post' => $post
+ ]
+ ); ?>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+
+ <div class="row">
+ <?php $__currentLoopData = $postByCategoryCultureSmall; $this->addLoop($__currentLoopData);$this->getFirstLoop();
+ foreach($__currentLoopData as $key => $postItem): $loop = $this->incrementLoopIndices();  ?>
+ <div class="col-lg-<?php echo \htmlentities($key == 0 ? 4 : 8??'', ENT_QUOTES, 'UTF-8', false); ?>">
+ <?php $__currentLoopData = $postItem; $this->addLoop($__currentLoopData);$this->getFirstLoop();
+ foreach($__currentLoopData as $index => $post): $loop = $this->incrementLoopIndices();  ?>
+ <?php echo $this->runChild('composers.post-entry-1',
+ [
+ 'post' => $post,
+ 'lastIndex' => count($postItem) - 1, // Số lượng phần tử trong mỗi mảng $postItem
+ 'index' => $index
+ ]
+ ); ?>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+
+ </div>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+ </div>
+
+ </div>
+
+ <div class="col-md-3">
+
+ <?php $__currentLoopData = $postByCategoryCultureSidebar; $this->addLoop($__currentLoopData);$this->getFirstLoop();
+ foreach($__currentLoopData as $index => $post): $loop = $this->incrementLoopIndices();  ?>
+
+ <?php echo $this->runChild('composers.post-entry-1-sidebar',
+ [
+ 'post' => $post,
+ 'lastIndex' => count($post) - 1, // Số lượng phần tử trong mỗi mảng $postItem
+ 'index' => $index
+ ]
+ ); ?>
+
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+
+ </div>
+ </div>
+ </div>
+ </section><!-- End Culture Category Section -->
+
+ <!-- ======= Business Category Section ======= -->
+ <section class="category-section">
+ <div class="container" data-aos="fade-up">
+
+ <div class="section-header d-flex justify-content-between align-items-center mb-5">
+ <h2>Business</h2>
+ <div><a href="category.html" class="more">See All Business</a></div>
+ </div>
+
+ <div class="row">
+ <div class="col-md-9 order-md-2">
+
+ <div class="d-lg-flex post-entry-2">
+ <a href="single-post.html" class="me-4 thumbnail d-inline-block mb-4 mb-lg-0">
+ <img src="assets/img/post-landscape-3.jpg" alt="" class="img-fluid">
+ </a>
+ <div>
+ <div class="post-meta"><span class="date">Business</span> <span class="mx-1">&bullet;</span>
+ <span>Jul 5th '22</span></div>
+ <h3><a href="single-post.html">What is the son of Football Coach John Gruden, Deuce Gruden
+ doing Now?</a></h3>
+ <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio placeat
+ exercitationem magni voluptates dolore. Tenetur fugiat voluptates quas, nobis error
+ deserunt aliquam temporibus sapiente, laudantium dolorum itaque libero eos deleniti?</p>
+ <div class="d-flex align-items-center author">
+ <div class="photo"><img src="assets/img/person-4.jpg" alt="" class="img-fluid"></div>
+ <div class="name">
+ <h3 class="m-0 p-0">Wade Warren</h3>
+ </div>
+ </div>
+ </div>
+ </div>
+
+ <div class="row">
+ <div class="col-lg-4">
+ <div class="post-entry-1 border-bottom">
+ <a href="single-post.html"><img src="assets/img/post-landscape-5.jpg" alt=""
+ class="img-fluid"></a>
+ <div class="post-meta"><span class="date">Business</span> <span
+ class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
+ <h2 class="mb-2"><a href="single-post.html">11 Work From Home Part-Time Jobs You Can Do
+ Now</a></h2>
+ <span class="author mb-3 d-block">Jenny Wilson</span>
+ <p class="mb-4 d-block">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vero
+ temporibus repudiandae, inventore pariatur numquam cumque possimus</p>
+ </div>
+
+ <div class="post-entry-1">
+ <div class="post-meta"><span class="date">Business</span> <span
+ class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
+ <h2 class="mb-2"><a href="single-post.html">5 Great Startup Tips for Female Founders</a>
+ </h2>
+ <span class="author mb-3 d-block">Jenny Wilson</span>
+ </div>
+ </div>
+ <div class="col-lg-8">
+ <div class="post-entry-1">
+ <a href="single-post.html"><img src="assets/img/post-landscape-7.jpg" alt=""
+ class="img-fluid"></a>
+ <div class="post-meta"><span class="date">Business</span> <span
+ class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
+ <h2 class="mb-2"><a href="single-post.html">How to Avoid Distraction and Stay Focused
+ During Video Calls?</a></h2>
+ <span class="author mb-3 d-block">Jenny Wilson</span>
+ <p class="mb-4 d-block">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vero
+ temporibus repudiandae, inventore pariatur numquam cumque possimus</p>
+ </div>
+ </div>
+ </div>
+ </div>
+ <div class="col-md-3">
+ <div class="post-entry-1 border-bottom">
+ <div class="post-meta"><span class="date">Business</span> <span class="mx-1">&bullet;</span>
+ <span>Jul 5th '22</span></div>
+ <h2 class="mb-2"><a href="single-post.html">How to Avoid Distraction and Stay Focused During
+ Video Calls?</a></h2>
+ <span class="author mb-3 d-block">Jenny Wilson</span>
+ </div>
+
+ <div class="post-entry-1 border-bottom">
+ <div class="post-meta"><span class="date">Business</span> <span class="mx-1">&bullet;</span>
+ <span>Jul 5th '22</span></div>
+ <h2 class="mb-2"><a href="single-post.html">17 Pictures of Medium Length Hair in Layers That
+ Will Inspire Your New Haircut</a></h2>
+ <span class="author mb-3 d-block">Jenny Wilson</span>
+ </div>
+
+ <div class="post-entry-1 border-bottom">
+ <div class="post-meta"><span class="date">Business</span> <span class="mx-1">&bullet;</span>
+ <span>Jul 5th '22</span></div>
+ <h2 class="mb-2"><a href="single-post.html">9 Half-up/half-down Hairstyles for Long and Medium
+ Hair</a></h2>
+ <span class="author mb-3 d-block">Jenny Wilson</span>
+ </div>
+
+ <div class="post-entry-1 border-bottom">
+ <div class="post-meta"><span class="date">Business</span> <span class="mx-1">&bullet;</span>
+ <span>Jul 5th '22</span></div>
+ <h2 class="mb-2"><a href="single-post.html">Life Insurance And Pregnancy: A Working Mom’s
+ Guide</a></h2>
+ <span class="author mb-3 d-block">Jenny Wilson</span>
+ </div>
+
+ <div class="post-entry-1 border-bottom">
+ <div class="post-meta"><span class="date">Business</span> <span class="mx-1">&bullet;</span>
+ <span>Jul 5th '22</span></div>
+ <h2 class="mb-2"><a href="single-post.html">The Best Homemade Masks for Face (keep the Pimples
+ Away)</a></h2>
+ <span class="author mb-3 d-block">Jenny Wilson</span>
+ </div>
+
+ <div class="post-entry-1 border-bottom">
+ <div class="post-meta"><span class="date">Business</span> <span class="mx-1">&bullet;</span>
+ <span>Jul 5th '22</span></div>
+ <h2 class="mb-2"><a href="single-post.html">10 Life-Changing Hacks Every Working Mom Should
+ Know</a></h2>
+ <span class="author mb-3 d-block">Jenny Wilson</span>
+ </div>
+ </div>
+ </div>
+ </div>
+ </section><!-- End Business Category Section -->
+
+ <!-- ======= Lifestyle Category Section ======= -->
+ <section class="category-section">
+ <div class="container" data-aos="fade-up">
+
+ <div class="section-header d-flex justify-content-between align-items-center mb-5">
+ <h2>Đời Sống</h2>
+ <div><a href="/category/5" class="more">Xem Tất Cả Đời Sống</a></div>
+ </div>
+
+ <div class="row g-5">
+ <div class="col-lg-4">
+ <?php $__currentLoopData = $postByCategoryLifeMain; $this->addLoop($__currentLoopData);$this->getFirstLoop();
+ foreach($__currentLoopData as $post): $loop = $this->incrementLoopIndices();  ?>
+ <div class="post-entry-1 lg">
+ <a href="/postDetail/<?php echo \htmlentities($post['id_post']??'', ENT_QUOTES, 'UTF-8', false); ?>">
+ <img src="<?php echo \htmlentities($post['image']??'', ENT_QUOTES, 'UTF-8', false); ?>" alt=""
+ class="img-fluid">
+ </a>
+ <div class="post-meta"><span class="date"><?php echo \htmlentities($post['name_category']??'', ENT_QUOTES, 'UTF-8', false); ?></span> <span
+ class="mx-1">&bullet;</span>
+ <span><?php echo \htmlentities(date("M jS 'y", strtotime($post['create_at']))??'', ENT_QUOTES, 'UTF-8', false); ?></span></div>
+ <h2><a href="/postDetail/<?php echo \htmlentities($post['id_post']??'', ENT_QUOTES, 'UTF-8', false); ?>"><?php echo \htmlentities($post['title']??'', ENT_QUOTES, 'UTF-8', false); ?></a></h2>
+ <p class="mb-4 d-block"><?php echo \htmlentities($post['content']??'', ENT_QUOTES, 'UTF-8', false); ?></p>
+ </div>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+
+ <?php $__currentLoopData = $postByCategoryLifeSmail; $this->addLoop($__currentLoopData);$this->getFirstLoop();
+ foreach($__currentLoopData as $key => $post): $loop = $this->incrementLoopIndices();  ?>
+ <div class="post-entry-1 <?php echo \htmlentities($key == 1 ? "" : "border-bottom"??'', ENT_QUOTES, 'UTF-8', false); ?>">
+ <div class="post-meta"><span class="date"><?php echo \htmlentities($post['name_category']??'', ENT_QUOTES, 'UTF-8', false); ?></span>
+ <span class="mx-1">&bullet;</span>
+ <span><?php echo \htmlentities(date("M jS 'y", strtotime($post['create_at']))??'', ENT_QUOTES, 'UTF-8', false); ?></span></div>
+ <div>
+ <a href="/postDetail/<?php echo \htmlentities($post['id_post']??'', ENT_QUOTES, 'UTF-8', false); ?>">
+ <img width="100px" src="<?php echo \htmlentities($post['image']??'', ENT_QUOTES, 'UTF-8', false); ?>" alt=""
+ class="img-fluid">
+ </a>
+ </div>
+ <h2 class="mb-2"><a href="/postDetail/<?php echo \htmlentities($post['id_post']??'', ENT_QUOTES, 'UTF-8', false); ?>"><?php echo \htmlentities($post['title']??'', ENT_QUOTES, 'UTF-8', false); ?></a></h2>
+ </div>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+
+
+ </div>
+
+ <div class="col-lg-8">
+ <div class="row g-5">
+ <?php $__currentLoopData = $lifeTop6; $this->addLoop($__currentLoopData);$this->getFirstLoop();
+ foreach($__currentLoopData as $key => $postItem): $loop = $this->incrementLoopIndices();  ?>
+ <?php if($key <= 1): ?>
+ <div class="col-lg-4 <?php echo \htmlentities($key <= 1 ? "border-start custom-border" : ""??'', ENT_QUOTES, 'UTF-8', false); ?>">
+ <?php $__currentLoopData = $postItem; $this->addLoop($__currentLoopData);$this->getFirstLoop();
+ foreach($__currentLoopData as $post): $loop = $this->incrementLoopIndices();  ?>
+ <?php echo $this->runChild('composers.post-entry-1',
+ [
+ 'post' => $post
+ ]
+ ); ?>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+ </div>
+ <?php else: ?>
+ <div class="col-lg-4">
+ <?php $__currentLoopData = $postByCategoryLifeSmailRight; $this->addLoop($__currentLoopData);$this->getFirstLoop();
+ foreach($__currentLoopData as $post): $loop = $this->incrementLoopIndices();  ?>
+ <div class="post-entry-1 border-bottom">
+ <div class="post-meta"><span
+ class="date"><?php echo \htmlentities($post['name_category']??'', ENT_QUOTES, 'UTF-8', false); ?></span> <span
+ class="mx-1">&bullet;</span>
+ <span><?php echo \htmlentities(date("M jS 'y", strtotime($post['create_at']))??'', ENT_QUOTES, 'UTF-8', false); ?></span></div>
+ <h2 class="mb-2"><a href="single-post.html"><?php echo \htmlentities($post['title']??'', ENT_QUOTES, 'UTF-8', false); ?></a></h2>
+ </div>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+
+ </div>
+ <?php endif; ?>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+
+ </div>
+ </div>
+
+ </div> <!-- End .row -->
+ </div>
+ </section><!-- End Lifestyle Category Section -->
+<?php $this->stopSection(); ?>
+<?php if (isset($_shouldextend[1])) { echo $this->runChild('layouts.master'); } ?>

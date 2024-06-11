@@ -1,0 +1,310 @@
+<?php $_shouldextend[1]=1; ?>
+
+<?php $this->startSection('title'); ?>
+ Home
+<?php $this->stopSection(); ?>
+
+<?php $this->startSection('content'); ?>
+ <!-- ======= Hero Slider Section ======= -->
+ <section id="hero-slider" class="hero-slider">
+ <div class="container-md" data-aos="fade-in">
+ <div class="row">
+ <div class="col-12">
+ <div class="swiper sliderFeaturedPosts">
+ <div class="swiper-wrapper">
+ <?php $__currentLoopData = $getPostByTrend; $this->addLoop($__currentLoopData);$this->getFirstLoop();
+ foreach($__currentLoopData as $post): $loop = $this->incrementLoopIndices();  ?>
+ <div class="swiper-slide">
+ <a href="/postDetail/<?php echo \htmlentities($post['slug']??'', ENT_QUOTES, 'UTF-8', false); ?>" class="img-bg d-flex align-items-end"
+ style="background-image: url(<?php echo \htmlentities($post['image']??'', ENT_QUOTES, 'UTF-8', false); ?>);">
+ <div class="img-bg-inner">
+ <h2><?php echo \htmlentities($post['title']??'', ENT_QUOTES, 'UTF-8', false); ?></h2>
+ <p><?php echo \htmlentities($post['content']??'', ENT_QUOTES, 'UTF-8', false); ?></p>
+ </div>
+ </a>
+ </div>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+ </div>
+ <div class="custom-swiper-button-next">
+ <span class="bi-chevron-right"></span>
+ </div>
+ <div class="custom-swiper-button-prev">
+ <span class="bi-chevron-left"></span>
+ </div>
+
+ <div class="swiper-pagination"></div>
+ </div>
+ </div>
+ </div>
+ </div>
+ </section><!-- End Hero Slider Section -->
+
+ <!-- ======= Post Grid Section ======= -->
+ <section id="posts" class="posts">
+ <div class="container" data-aos="fade-up">
+ <div class="row g-5">
+ <?php $__currentLoopData = $onePost; $this->addLoop($__currentLoopData);$this->getFirstLoop();
+ foreach($__currentLoopData as $post): $loop = $this->incrementLoopIndices();  ?>
+ <div class="col-lg-4">
+ <?php echo $this->runChild('composers.post-entry-1',
+ [
+ 'post' => $post,
+ ]
+ ); ?>
+ </div>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+
+ <div class="col-lg-8">
+ <div class="row g-5">
+
+ <?php $__currentLoopData = $postListPostTop6; $this->addLoop($__currentLoopData);$this->getFirstLoop();
+ foreach($__currentLoopData as $postItem): $loop = $this->incrementLoopIndices();  ?>
+ <div class="col-lg-4 border-start custom-border">
+ <?php $__currentLoopData = $postItem; $this->addLoop($__currentLoopData);$this->getFirstLoop();
+ foreach($__currentLoopData as $index => $post): $loop = $this->incrementLoopIndices();  ?>
+ <?php echo $this->runChild('composers.post-entry-1',
+ [
+ 'post' => $post,
+ 'hiddenAuthor' => false,
+ 'lastIndex' => count($postItem) - 1, // Số lượng phần tử trong mỗi mảng $postItem
+ 'index' => $index
+ ]
+ ); ?>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+ </div>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+
+ <!-- Trending Section -->
+ <div class="col-lg-4">
+
+ <div class="trending">
+ <h3>Xu Hướng</h3>
+ <ul class="trending-post">
+ <?php $__currentLoopData = $getPostByTrend; $this->addLoop($__currentLoopData);$this->getFirstLoop();
+ foreach($__currentLoopData as $key => $postTrend): $loop = $this->incrementLoopIndices();  ?>
+ <li>
+ <a href="/postDetail/<?php echo \htmlentities($postTrend['slug']??'', ENT_QUOTES, 'UTF-8', false); ?>">
+ <span class="number"><?php echo \htmlentities($key+1??'', ENT_QUOTES, 'UTF-8', false); ?></span>
+ <h3><?php echo \htmlentities($postTrend['title']??'', ENT_QUOTES, 'UTF-8', false); ?></h3>
+ <span class="author"><?php echo \htmlentities($postTrend['name_category']??'', ENT_QUOTES, 'UTF-8', false); ?></span>
+ </a>
+ </li>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+ </ul>
+ </div>
+
+ </div>
+ <!-- End Trending Section -->
+ </div>
+ </div>
+
+ </div> <!-- End .row -->
+ </div>
+ </section> <!-- End Post Grid Section -->
+
+ <!-- ======= Culture Category Section ======= -->
+ <section class="category-section">
+ <div class="container" data-aos="fade-up">
+
+ <div class="section-header d-flex justify-content-between align-items-center mb-5">
+ <h2>Văn Hóa</h2>
+ <div><a href="/category/van-hoa" class="more">Xem Tất Cả Văn Hóa</a></div>
+ </div>
+
+ <div class="row">
+ <div class="col-md-9">
+ <?php $__currentLoopData = $postByCategoryCultureMain; $this->addLoop($__currentLoopData);$this->getFirstLoop();
+ foreach($__currentLoopData as $post): $loop = $this->incrementLoopIndices();  ?>
+ <?php echo $this->runChild('composers.post-entry-2',
+ [
+ 'post' => $post
+ ]
+ ); ?>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+
+ <div class="row">
+ <?php $__currentLoopData = $postByCategoryCultureSmall; $this->addLoop($__currentLoopData);$this->getFirstLoop();
+ foreach($__currentLoopData as $key => $postItem): $loop = $this->incrementLoopIndices();  ?>
+ <div class="col-lg-<?php echo \htmlentities($key == 0 ? 4 : 8??'', ENT_QUOTES, 'UTF-8', false); ?>">
+ <?php $__currentLoopData = $postItem; $this->addLoop($__currentLoopData);$this->getFirstLoop();
+ foreach($__currentLoopData as $index => $post): $loop = $this->incrementLoopIndices();  ?>
+ <?php echo $this->runChild('composers.post-entry-1',
+ [
+ 'post' => $post,
+ 'lastIndex' => count($postItem) - 1, // Số lượng phần tử trong mỗi mảng $postItem
+ 'index' => $index
+ ]
+ ); ?>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+
+ </div>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+ </div>
+
+ </div>
+
+ <div class="col-md-3">
+
+ <?php $__currentLoopData = $postByCategoryCultureSidebar; $this->addLoop($__currentLoopData);$this->getFirstLoop();
+ foreach($__currentLoopData as $index => $post): $loop = $this->incrementLoopIndices();  ?>
+
+ <?php echo $this->runChild('composers.post-entry-1-sidebar',
+ [
+ 'post' => $post,
+ 'lastIndex' => count($postByCategoryCultureSidebar) - 1, // Số lượng phần tử trong mỗi mảng $postByCategoryCultureSidebar
+ 'index' => $index
+ ]
+ ); ?>
+
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+
+ </div>
+ </div>
+ </div>
+ </section><!-- End Culture Category Section -->
+
+ <!-- ======= Business Category Section ======= -->
+ <section class="category-section">
+ <div class="container" data-aos="fade-up">
+
+ <div class="section-header d-flex justify-content-between align-items-center mb-5">
+ <h2>Thể thao</h2>
+ <div><a href="/category/the-thao" class="more">Xem tất cả thể thao</a></div>
+ </div>
+
+ <div class="row">
+ <div class="col-md-9 order-md-2">
+
+ <?php $__currentLoopData = $postByCategoryFootballMain; $this->addLoop($__currentLoopData);$this->getFirstLoop();
+ foreach($__currentLoopData as $post): $loop = $this->incrementLoopIndices();  ?>
+ <?php echo $this->runChild('composers.post-entry-2',
+ [
+ 'post' => $post
+ ]
+ ); ?>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+
+ <div class="row">
+ <?php $__currentLoopData = $postByCategoryFootballSmail; $this->addLoop($__currentLoopData);$this->getFirstLoop();
+ foreach($__currentLoopData as $key => $postItem): $loop = $this->incrementLoopIndices();  ?>
+ <div class="col-lg-<?php echo \htmlentities($key == 0 ? 4 : 8??'', ENT_QUOTES, 'UTF-8', false); ?>">
+ <?php $__currentLoopData = $postItem; $this->addLoop($__currentLoopData);$this->getFirstLoop();
+ foreach($__currentLoopData as $index => $post): $loop = $this->incrementLoopIndices();  ?>
+ <?php echo $this->runChild('composers.post-entry-1',
+ [
+ 'post' => $post,
+ 'lastIndex' => count($postItem) - 1, // Số lượng phần tử trong mỗi mảng $postItem
+ 'index' => $index
+ ]
+ ); ?>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+
+ </div>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+ </div>
+ </div>
+ <div class="col-md-3">
+ <?php $__currentLoopData = $postByCategoryFootballSidebar; $this->addLoop($__currentLoopData);$this->getFirstLoop();
+ foreach($__currentLoopData as $index => $post): $loop = $this->incrementLoopIndices();  ?>
+
+ <?php echo $this->runChild('composers.post-entry-1-sidebar',
+ [
+ 'post' => $post,
+ 'lastIndex' => count($postByCategoryFootballSidebar) - 1, // Số lượng phần tử trong mỗi mảng $postByCategoryCultureSidebar
+ 'index' => $index
+ ]
+ ); ?>
+
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+ </div>
+ </div>
+ </div>
+ </section><!-- End Business Category Section -->
+
+ <!-- ======= Lifestyle Category Section ======= -->
+ <section class="category-section">
+ <div class="container" data-aos="fade-up">
+
+ <div class="section-header d-flex justify-content-between align-items-center mb-5">
+ <h2>Đời Sống</h2>
+ <div><a href="/category/doi-song" class="more">Xem Tất Cả Đời Sống</a></div>
+ </div>
+
+ <div class="row g-5">
+ <div class="col-lg-4">
+ <?php $__currentLoopData = $postByCategoryLifeMain; $this->addLoop($__currentLoopData);$this->getFirstLoop();
+ foreach($__currentLoopData as $post): $loop = $this->incrementLoopIndices();  ?>
+ <div class="post-entry-1 lg">
+ <a href="/postDetail/<?php echo \htmlentities($post['slug']??'', ENT_QUOTES, 'UTF-8', false); ?>">
+ <img src="<?php echo \htmlentities($post['image']??'', ENT_QUOTES, 'UTF-8', false); ?>" alt=""
+ class="img-fluid">
+ </a>
+ <div class="post-meta"><span class="date"><?php echo \htmlentities($post['name_category']??'', ENT_QUOTES, 'UTF-8', false); ?></span> <span
+ class="mx-1">&bullet;</span>
+ <span><?php echo \htmlentities(date("M jS 'y", strtotime($post['create_at']))??'', ENT_QUOTES, 'UTF-8', false); ?></span></div>
+ <h2><a href="/postDetail/<?php echo \htmlentities($post['slug']??'', ENT_QUOTES, 'UTF-8', false); ?>"><?php echo \htmlentities($post['title']??'', ENT_QUOTES, 'UTF-8', false); ?></a></h2>
+ <p class="mb-4 d-block"><?php echo \htmlentities($post['content']??'', ENT_QUOTES, 'UTF-8', false); ?></p>
+ </div>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+
+ <?php $__currentLoopData = $postByCategoryLifeSmail; $this->addLoop($__currentLoopData);$this->getFirstLoop();
+ foreach($__currentLoopData as $key => $post): $loop = $this->incrementLoopIndices();  ?>
+ <div class="post-entry-1 <?php echo \htmlentities($key == 1 ? "" : "border-bottom"??'', ENT_QUOTES, 'UTF-8', false); ?>">
+ <div class="post-meta"><span class="date"><?php echo \htmlentities($post['name_category']??'', ENT_QUOTES, 'UTF-8', false); ?></span>
+ <span class="mx-1">&bullet;</span>
+ <span><?php echo \htmlentities(date("M jS 'y", strtotime($post['create_at']))??'', ENT_QUOTES, 'UTF-8', false); ?></span></div>
+ <div>
+ <a href="/postDetail/<?php echo \htmlentities($post['slug']??'', ENT_QUOTES, 'UTF-8', false); ?>">
+ <img width="100px" src="<?php echo \htmlentities($post['image']??'', ENT_QUOTES, 'UTF-8', false); ?>" alt=""
+ class="img-fluid">
+ </a>
+ </div>
+ <h2 class="mb-2"><a href="/postDetail/<?php echo \htmlentities($post['slug']??'', ENT_QUOTES, 'UTF-8', false); ?>"><?php echo \htmlentities($post['title']??'', ENT_QUOTES, 'UTF-8', false); ?></a></h2>
+ </div>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+
+
+ </div>
+
+ <div class="col-lg-8">
+ <div class="row g-5">
+ <?php $__currentLoopData = $lifeTop6; $this->addLoop($__currentLoopData);$this->getFirstLoop();
+ foreach($__currentLoopData as $key => $postItem): $loop = $this->incrementLoopIndices();  ?>
+ <?php if($key <= 1): ?>
+ <div class="col-lg-4 <?php echo \htmlentities($key <= 1 ? "border-start custom-border" : ""??'', ENT_QUOTES, 'UTF-8', false); ?>">
+ <?php $__currentLoopData = $postItem; $this->addLoop($__currentLoopData);$this->getFirstLoop();
+ foreach($__currentLoopData as $index => $post): $loop = $this->incrementLoopIndices();  ?>
+ <?php echo $this->runChild('composers.post-entry-1',
+ [
+ 'post' => $post,
+ 'lastIndex' => count($postItem) - 1, // Số lượng phần tử trong mỗi mảng $postItem
+ 'index' => $index
+ ]
+ ); ?>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+ </div>
+ <?php else: ?>
+ <div class="col-lg-4">
+ <?php $__currentLoopData = $postByCategoryLifeSmailRight; $this->addLoop($__currentLoopData);$this->getFirstLoop();
+ foreach($__currentLoopData as $post): $loop = $this->incrementLoopIndices();  ?>
+ <div class="post-entry-1 border-bottom">
+ <div class="post-meta"><span
+ class="date"><?php echo \htmlentities($post['name_category']??'', ENT_QUOTES, 'UTF-8', false); ?></span> <span
+ class="mx-1">&bullet;</span>
+ <span><?php echo \htmlentities(date("M jS 'y", strtotime($post['create_at']))??'', ENT_QUOTES, 'UTF-8', false); ?></span></div>
+ <h2 class="mb-2"><a href="<?php echo \htmlentities($post['slug']??'', ENT_QUOTES, 'UTF-8', false); ?>"><?php echo \htmlentities($post['title']??'', ENT_QUOTES, 'UTF-8', false); ?></a></h2>
+ </div>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+
+ </div>
+ <?php endif; ?>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+
+ </div>
+ </div>
+
+ </div> <!-- End .row -->
+ </div>
+ </section><!-- End Lifestyle Category Section -->
+<?php $this->stopSection(); ?>
+<?php if (isset($_shouldextend[1])) { echo $this->runChild('layouts.master'); } ?>
